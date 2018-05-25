@@ -12,11 +12,11 @@
 
 아파치, 톰캣, 인터넷정보서비스 등으로 서비스 되는 인터넷 [http(s)](./letsencrypt)기반 응용 프로그램을 진단합니다.
 
-아파치 기반의 php 언어로 짜여진 웹사이트가 구축되어 있습니다. 잘 알려진 DVWA, bWAPP 가 좋은 실습 환경이죠.
+아파치 기반의 php 언어로 짜여진 웹사이트가 구축되어 있습니다. 잘 알려진 DVWA, bWAPP 가 좋은 실습 환경입니다.
 
-톰캣으로는 [jsp](./egov)로 작성된 코드를 실행할 수 있습니다. mysql을 jdbc로 연결하여 sql injection, [XSS](./lucy-xss-filter)를 [테스트](./jstl-xss-prevention) 할 수 있죠.
+톰캣으로는 [jsp](./egov)로 작성된 코드를 실행할 수 있습니다. mysql을 jdbc로 연결하여 sql injection, [XSS](./lucy-xss-filter)를 [테스트](./jstl-xss-prevention) 할 수 입니다.
 
-IIS 로는 asp로 만든 웹사이트가 실행되고 있습니다. MS-SQL 과 연동하여 쿠키, 인증 관련 취약점도 확인해 볼 수 있죠.
+IIS 로는 asp로 만든 웹사이트가 실행되고 있습니다. MS-SQL 과 연동하여 [포스트맨](./postman)을 활용한 쿠키, 인증 관련 취약점도 확인해 볼 수 있습니다.
 
 [SSI](./ssi), [XPATH](./bwapp) 취약점도 테스트할 수 있는데, 지금도 〈!--#echo var="DOCUMENT_ROOT" --〉 를 넣어 실행 가능하도록 mod_include.so가 적용된 환경을 구성했습니다.
 
@@ -63,6 +63,8 @@ VPN 이나, DDoS 방어, 방화벽, 웹방화벽 등의 보안장비는 각각 �
 web.xml, 로그 파일, 설정파일, 실행 파일과 데몬 관리, 사용자, 계정 관리는 아파치, Jboss, 톰캣, IIS 에서 확인할 수 있는 항목들입니다.
 
 보안설정을 통해 웹(어플리케이션) 보안을 향상시킬 수 있습니다.
+
+가상 서버 구축으로 아파치의 [메소드 제한 설정](./method) 등을 테스트 하고 있습니다.
 
 ### 모바일앱 보안
 
