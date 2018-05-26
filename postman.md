@@ -62,7 +62,7 @@ postman은 Save메뉴를 통하여 자신의 요청 패킷을 계정에 저장�
 또한 Team Libary 메뉴를 통해 자신의 패킷을 다른 사용자들과 공유할 수 있습니다.
 
 <div>
-<img src="./teamlibrary.png" width="90%">
+<img src="./teamlibrary.png" width="90%"></img>
 </div>
 
 
