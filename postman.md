@@ -10,10 +10,7 @@ Postman은 크롬 브라우저의 확장 프로그램으로 구글에서 설치�
 
 초기화면
 
-<div>
-<img src="./installation2.png" width="90%"></img>
 ![설치](./installation2.png)
-</div>
 
 ### 사용하기
 
