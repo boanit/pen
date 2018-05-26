@@ -11,7 +11,7 @@ Postman은 크롬 브라우저의 확장 프로그램으로 구글에서 설치�
 초기화면
 
 <div>
-<img src="https://github.com/boanit/pen/blob/master/installation2.png" width="90%"></img>
+<img src="./installation2.png" width="90%"></img>
 </div>
 
 ### 사용하기
@@ -22,27 +22,27 @@ Postman은 크롬 브라우저의 확장 프로그램으로 구글에서 설치�
 (OAuth, AWS Signature 등 API 서버의 인증이 필요할 경우 Authorization 메뉴를 통해 인증 키 혹은 ID/PWD를 설정할 수 있습니다.)
 
 <div>
-<img src="https://github.com/boanit/pen/blob/master/test01.png" width="90%"></img>
+<img src="./test01.png" width="90%"></img>
 </div>
 
 
 헤더 영역을 모두 작성한 후 바디 영역을 작성합니다.
 
 <div>
-<img src="https://github.com/boanit/pen/blob/master/test02.png" width="90%"></img>
+<img src="./test02.png" width="90%"></img>
 </div>
 
 바디영역 작성 시 form-data, x-www-form-urlencoded, raw, binary(파일 업로드) 형식으로 선택하여 작성이 가능하며,
 raw로 작성할 경우 Text,Text(test/plain), JSON, Javascript, xml(application/xml), xml(test/xml), HTML(text,html) 으로 형식에 맞게 작성이 가능합니다.
 
 <div>
-<img src="https://github.com/boanit/pen/blob/master/json.png" width="90%"></img>
+<img src="./json.png" width="90%"></img>
 </div>
 
 Send 메뉴를 클릭하며 해당 Request 값에 대한 Response가 아래와 같이 출력됩니다.
 
 <div>
-<img src="https://github.com/boanit/pen/blob/master/response.png" width="90%"></img>
+<img src="./response.png" width="90%"></img>
 </div>
 
 ### Postman Interceptor
@@ -52,7 +52,7 @@ Postman Interceptor를 활성화 경우 좌측 History에 로컬 브라우저에
 postman과 같이 크록 확장프로그램으로 구글 검색 후 설치할 수 있으며 상단의 Postman Interceptor메뉴를 통해 활성화 할 수 있습니다.
 
 <div>
-<img src="https://github.com/boanit/pen/blob/master/postmaninterceptor.png" width="90%"></img>
+<img src="./postmaninterceptor.png" width="90%"></img>
 </div>
 
 ### 활용하기 
@@ -62,7 +62,7 @@ postman은 Save메뉴를 통하여 자신의 요청 패킷을 계정에 저장�
 또한 Team Libary 메뉴를 통해 자신의 패킷을 다른 사용자들과 공유할 수 있습니다.
 
 <div>
-<img src="https://github.com/boanit/pen/blob/master/teamlibrary.png" width="90%"></img>
+<img src="./teamlibrary.png" width="90%">
 </div>
 
 
