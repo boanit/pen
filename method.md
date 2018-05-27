@@ -6,22 +6,18 @@
 OPTIONS 메소드를 사용하여 Request 패킷을 전송해 응답 값 헤더영역에 Allow필드에 허용된 메소드를 확인할 수 있습니다.
 아래와 같이 apache 설치 시 디폴트로 GET, HEAD, POST, OPTIONS, TRACE 메소드가 허용되어있음을 확인할 수 있습니다.
 
-<div>
-<img src="./options.png" width="90%"></img>
-</div>
+![options](./options.png)
 
 ### 조치 방법
 
 /etc/httpd/conf/httpd.conf 경로에서 설정 파일을 수정합니다.
-<div>
-<img src="./httpdconf.png" width="90%"></img>
-</div>
+
+![httpdconf](./httpdconf.png)
+
 (수정 후 아파치서버를 restart해야 설정이 적용되니 참고하시기 바랍니다.)
 
 ### 조치 결과
 
 아래와 같이 OPTIONS메소드를 사용한 경우 사용자 정의 에러페이지가 출력되며 허용된 메소드가 출력되지 않는 것을 확인할 수 있습니다.
 
-<div>
-<img src="./result.png" width="90%"></img>
-</div>
+![result](./result.png)
