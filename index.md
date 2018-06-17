@@ -18,7 +18,7 @@
 
 IIS 로는 asp로 만든 웹사이트가 실행되고 있습니다. MS-SQL 과 연동하여 [포스트맨](./postman)을 활용한 쿠키, 인증 관련 취약점도 확인해 볼 수 있습니다.
 
-[SSI](./ssi), [XPATH](./bwapp) 취약점도 테스트할 수 있는데, 지금도 〈!--#echo var="DOCUMENT_ROOT" --〉 를 넣어 실행 가능하도록 mod_include.so가 적용된 환경을 구성했습니다.
+[SSI](./ssi), [XPATH](./bwapp), [XXE](./xxe) 취약점도 테스트할 수 있는데, 지금도 〈!--#echo var="DOCUMENT_ROOT" --〉 를 넣어 실행 가능하도록 mod_include.so가 적용된 환경을 구성했습니다.
 
 ### DBMS 보안
 
