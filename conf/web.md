@@ -3,25 +3,25 @@
 <pre><code>
 
 ＜error-page>
-	<error-code>404</error-code>
-	<location>/error/404</location>
+	＜error-code>404</error-code>
+	＜location>/error/404</location>
 </error-page>
-<error-page>
-	<error-code>405</error-code>
-	<location>/error/code</location>
+＜error-page>
+	＜error-code>405</error-code>
+	＜location>/error/code</location>
 </error-page>
-<error-page>
-	<error-code>500</error-code>
-	<location>/error/code</location>
+＜error-page>
+	＜error-code>500</error-code>
+	＜location>/error/code</location>
 </error-page>
-<error-page>
-	<exception-type>java.lang.Throwable</exception-type>
-	<location>/error/code</location>
+＜error-page>
+	＜exception-type>java.lang.Throwable</exception-type>
+	＜location>/error/code</location>
 </error-page>
 
 </code></pre>
 
-### 스프링부트 - white label error page disabled
+### 스프링부트 - white label error page disabled &lt;
 
 <pre><code>
 
