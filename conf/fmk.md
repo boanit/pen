@@ -1,4 +1,4 @@
-#### fmk
+### fmk
 
 firmware-modification-kit 추출 및 리빌드에 대한 내용입니다.
 
@@ -14,7 +14,7 @@ $ sudo apt-get install binwalk
 
 $ vi shared-ng.inc
 
-#### binwalk 설정 에러
+### binwalk 설정 에러
 
 ERROR: No supported file system found! Aborting...
 
@@ -22,7 +22,7 @@ binwalk의 경로를 수정해 줘야 fmk의 추출, 리빌드 사용이 가능�
 
 BINWALK=$(which binwalk)
 
-#### 실습용 펌웨어 추출
+### 실습용 펌웨어 추출
 
 $ wget http://download.iptime.co.kr/online_upgrade/n604_kr_9_66.bin
 
