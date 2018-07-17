@@ -43,7 +43,7 @@ ps | grep server
 <pre><code>python fridump.py -u -s [app package name]
 </pre></code>
 
-![frida_fridump2](./frida_fridump2)
+![frida_fridump2](./frida_fridump2.png)
 
 7) 아래와 같이 dump 경로에 덤프파일을 확인할 수 있습니다. 
 
