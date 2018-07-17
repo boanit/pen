@@ -49,3 +49,29 @@ ps | grep server
 
 ![frida_dump](./frida_dump.png)
 
+### adb를 이용한 메모리 덤프
+adb를 이용한 메모리덤프는 frida를 이용한 방법보다 비교적 간단합니다.
+1) 먼저 디바이스에 adb로 접속한 후 ps명령어를 이용하여 pid를 확인해둡니다.
+<pre><code>adb shell
+ps | grep google.android.play
+</pre></code>
+
+![adb_ps](./adb_ps.png)
+
+2) 이후 am명령어의 dumpheap 옵션으로 앱의 힙메모리를 추출합니다.
+<pre><code>adb -e shell am dumpheap [pid] [filename]
+</pre></code>
+
+
+3) 정상적으로 파일이 생성되었다면 adb pull 명령어를 이용하여 로컬 PC로 파일을 이동합니다.
+
+<pre><code>adb pull [파일경로] [로컬경로]
+</pre></code>
+
+4) 추출한 덤프 파일을 eclipse에서 지원하는 MAT(Memory Analyzer Tool)와 같은 프로그램으로 분석하기위해선 변환이 필요합니다.
+<pre><code>hprof-conv.exe [덤프된파일] [새로 생성 될파일]
+</pre></code>
+
+5) 추출된 덤프파일은 Hxd로 분석 가능합니다.
+
+### gdb를 이용한 메모리 덤프
