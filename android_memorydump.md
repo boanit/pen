@@ -37,7 +37,7 @@ ps | grep server
 5) 이후 클라이언트 PC에서 실행되는 앱의 덤프를 추출하기위해 fridump파일이 필요합니다. 해당 파일은 https://github.com/Nightbringer21/fridump 
 이곳에서 설치할 수 있습니다.
 
-![frida fridump](./frida-fridump.png)
+![frida_fridump](./frida-fridump.png)
 
 6) 설치 후 덤프를 뜨기위한 app패키지 네임을 아래와 같은 명령어로 추출합니다.
 <pre><code>python fridump.py -u -s [app package name]
