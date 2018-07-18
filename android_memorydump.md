@@ -56,7 +56,6 @@ adb를 이용한 메모리덤프는 frida를 이용한 방법보다 비교적 �
 ps | grep google.android.play
 </pre></code>
 
-![adb_ps](./adb_ps.png)
 
 2) 이후 am명령어의 dumpheap 옵션으로 앱의 힙메모리를 추출합니다.
 <pre><code>adb -e shell am dumpheap [pid] [filename]
