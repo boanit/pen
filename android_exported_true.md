@@ -55,7 +55,7 @@ SMS 문자 메시지를 받을 때 <br>
 </code>
 
 - adb로 단말에 연결한 후 am 명령어를 이용하여 아래와 같은 형식에 맞추어 입력합니다.<br>
- <img src="./amstart2.png"><br>
+ <img src="./amstart2.PNG"><br>
 <code>
  am start -a android.intent.action.MAIN -n 패키지명/액티비티 경로명
  </code> <br>
