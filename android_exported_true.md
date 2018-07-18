@@ -58,7 +58,7 @@ adb로 단말에 연결한 후 am 명령어를 이용하여 아래와 같은 형
 <code>
  am start -a android.intent.action.MAIN -n 패키지명/액티비티 경로명
  </code> <br>
- 아래와 같이 activity가 실행된 것을 확인할 수 있습니다.
+ 아래와 같이 activity가 실행된 것을 확인할 수 있습니다.<br>
  <img src="./amstart.png" width="40%">
  
  
