@@ -62,5 +62,40 @@ SMS 문자 메시지를 받을 때 <br>
  아래와 같이 activity가 실행된 것을 확인할 수 있습니다.<br>
  <img src="./amstart.png" width="40%">
  
+ 이 외에도 아래 명령어로 실행가능 하니 참고 하시면 됩니다.
  
+갤러리 실행 
+
+am start -a android.intent.action.GET_CONTENT -t image/jpeg  
+
+
+
+카메라 실행 
+
+am start -a android.media.action.IMAGE_CAPTURE
+
+
+
+환경설정 실행
+
+am start -a android.intent.action.MAIN -n com.android.settings/.Settings
+
+
+
+브라우저로 구글띄우기
+
+am start -a android.intent.action.VIEW http://www.google.com
+
+
+
+전화걸기 다이얼 입력 
+
+am start -a android.intent.action.DIAL tel:010XXXXXXX
+
+
+
+전화걸기 
+
+am start -a android.intent.action.CALL tel:010XXXXXXX
+
 
