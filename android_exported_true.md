@@ -20,19 +20,34 @@
 안드로이드는 앱들에게 브로드캐스트를 보냅니다. 
 브로드캐스트 리시버는 안드로이드가 보내는 브로드캐스트를 받고 이에 대응하는 어떤 작업을 수행할 수 있는 컴포넌트입니다.
 
-부팅이 완료될 때
-화면이 켜질 때
-화면이 꺼질 때
-날짜가 변경될 때
-시간이 변경될 때
-SMS 문자 메시지를 받을 때
-외장 메모리 카드를 기기에 꽂을 때
-외장 메모리 카드를 기기로부터 뺄 때 
+부팅이 완료될 때 <br>
+화면이 켜질 때 <br>
+화면이 꺼질 때 <br>
+날짜가 변경될 때 <br>
+시간이 변경될 때 <br>
+SMS 문자 메시지를 받을 때 <br>
+외장 메모리 카드를 기기에 꽂을 때 <br>
+외장 메모리 카드를 기기로부터 뺄 때 <br>
  
 <b>4) 컨텐트 프로바이더 (content provider)</b> <br>
 안드로이드에서 어플리케이션들이 데이터를 공유하기 위해서는 별도의 앱 컴포넌트가 필요합니다. 그것이 바로 컨텐트 프로바이더입니다.
 즉, 컨텐트 프로바이더는 어플리케이션들이 공유할 수 있도록 자료를 제공하는 앱 컴포넌트입니다.
 
 ### am 명령어를 통한 activity 실행
+안드로이드 앱 manifest.xml에서 디폴트로 exported=false로 설정되어 있으나, 해당 컴포넌트에 인텐트 필터를 설정할 경우 exported 설정이 true로 변경됩니다. 따라서 intent-filter가 설정된 activity에 exported=false설정이 없을 경우 am 명령어를 통해 실행시킬 수 있습니다.
 
-<>
+<pre><code>
+        <activity android:launchMode="singleTask" android:name="com.kt.simpleb.SmsDumyActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <action android:name="android.intent.action.SENDTO"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="sms"/>
+                <data android:scheme="smsto"/>
+                <data android:scheme="mms"/>
+                <data android:scheme="mmsto"/>
+            </intent-filter>
+        </activity>
+</pre></code>
+
