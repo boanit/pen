@@ -35,9 +35,11 @@ SMS 문자 메시지를 받을 때 <br>
 
 ### am 명령어를 통한 activity 실행
 안드로이드 앱 manifest.xml에서 디폴트로 exported=false로 설정되어 있으나, 해당 컴포넌트에 인텐트 필터를 설정할 경우 exported 설정이 true로 변경됩니다. 따라서 intent-filter가 설정된 activity에 exported=false설정이 없을 경우 am 명령어를 통해 실행시킬 수 있습니다.
+아래는 실습이 대상이될 앱의 manifest.xml 일부입니다.
 
-<pre><code>
-        <activity android:launchMode="singleTask" android:name="com.kt.simpleb.SmsDumyActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+<code>
+
+        <activity android:launchMode="singleTask" android:name="com.xx.simpleb.SmsDumyActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
                 <action android:name="android.intent.action.SENDTO"/>
@@ -49,5 +51,15 @@ SMS 문자 메시지를 받을 때 <br>
                 <data android:scheme="mmsto"/>
             </intent-filter>
         </activity>
-</pre></code>
+        
+</code>
+
+adb로 단말에 연결한 후 am 명령어를 이용하여 아래와 같은 형식에 맞추어 입력합니다.<br>
+<code>
+ am start -a android.intent.action.MAIN -n 패키지명/액티비티 경로명
+ </code>
+ 아래와 같이 activity가 실행된 것을 확인할 수 있습니다.
+ ![amstart](./amstart.png)
+ 
+ 
 
