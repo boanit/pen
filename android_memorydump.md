@@ -14,7 +14,7 @@ frida는 DBI(Dynamic Binary Instrumentation)이라고도 하는 동적 바이너
 
 <pre><code>
 pip install frida-server==10.0.0 
-</pre></code>
+</code></pre>
 
 ![frida_pip](./frida_pip.png)
 (이번 경우엔 10 버전이 정상 동작 되어 해당 버전으로 설치하였으며 환경에 맞는 버전 설치하시면 됩니다.)
@@ -30,14 +30,14 @@ pip install frida-server==10.0.0
 <pre><code>
 ./frida-server
 ps | grep server
-</pre></code>
+</code></pre>
 
 ![frida_ps](./frida_ps.png)
 
 4) adb를 나와서 클라이언트 PC에서 frida-ps -U 명령어를 통하여 단말기에서 실행되고 있는 프로세스 정보를 확인합니다.
 <pre><code>
 frida-ps -U
-</pre></code>
+</code></pre>
 
 ![frida_ps-u](./frida_ps-u.png)
 
@@ -49,7 +49,7 @@ frida-ps -U
 6) 설치 후 덤프를 뜨기위한 app패키지 네임을 아래와 같은 명령어로 추출합니다.
 <pre><code>
 python fridump.py -u -s [app package name]
-</pre></code>
+</code></pre>
 
 ![frida_fridump2](./frida-fridump2.png)
 
@@ -63,25 +63,25 @@ adb를 이용한 메모리덤프는 frida를 이용한 방법보다 비교적 �
 
 <pre><code>adb shell
 ps | grep google.android.play
-</pre></code>
+</code></pre>
 
 
 2) 이후 am명령어의 dumpheap 옵션으로 앱의 힙메모리를 추출합니다.
 
 <pre><code>
 adb -e shell am dumpheap [pid] [filename]
-</pre></code>
+</code></pre>
 
 
 3) 정상적으로 파일이 생성되었다면 adb pull 명령어를 이용하여 로컬 PC로 파일을 이동합니다.
 
 <pre><code>
 adb pull [파일경로] [로컬경로]
-</pre></code>
+</code></pre>
 
 4) 추출한 덤프 파일을 eclipse에서 지원하는 MAT(Memory Analyzer Tool)와 같은 프로그램으로 분석하기위해선 변환이 필요합니다.
 <pre><code>hprof-conv.exe [덤프된파일] [새로 생성 될파일]
-</pre></code>
+</code></pre>
 
 5) 추출된 덤프파일은 Hxd로 분석 가능합니다.
 
