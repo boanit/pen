@@ -8,7 +8,7 @@
 
 ### 안드로이드 컴포넌트 종류
 
-<b> 1) 액티비티 (activity) </b> <br>
+<b>1) 액티비티 (activity) </b> <br>
 액티비티는 안드로이드 어플리케이션의 화면을 담당하는 컴포넌트입니다.
 
 <b>2) 서비스 (service)</b> <br>
@@ -56,9 +56,11 @@ SMS 문자 메시지를 받을 때 <br>
 
 - adb로 단말에 연결한 후 am 명령어를 이용하여 아래와 같은 형식에 맞추어 입력합니다.<br>
  <img src="./amstart2.PNG"><br>
+
 <code>
  am start -a android.intent.action.MAIN -n 패키지명/액티비티 경로명
- </code> <br>
+</code>
+ 
  아래와 같이 activity가 실행된 것을 확인할 수 있습니다.<br>
  <img src="./amstart.png" width="40%">
  
