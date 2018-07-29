@@ -60,7 +60,7 @@ VPN 이나, DDoS 방어, 방화벽, 웹방화벽 등의 보안장비는 각각 �
 
 ### WEB/WAS 보안
 
-[web.xml](./conf/web), 로그 파일, 설정파일, 실행 파일과 데몬 관리, 사용자, 계정 관리는 아파치, Jboss, 톰캣, IIS 에서 확인할 수 있는 항목들입니다.
+[web.xml](./conf/web), 로그 파일, 설정파일, 실행 파일과 데몬 관리, 사용자, 계정 관리는 [아파치](./apache_header), Jboss, 톰캣, IIS 에서 확인할 수 있는 항목들입니다.
 
 보안설정을 통해 웹(어플리케이션) 보안을 향상시킬 수 있습니다.
 
@@ -68,7 +68,7 @@ VPN 이나, DDoS 방어, 방화벽, 웹방화벽 등의 보안장비는 각각 �
 
 ### 모바일앱 보안
 
-안드로이드와 IOS 앱들은 루팅, 탈옥에 의한 기기내 취약점 진단과 서버, 클라이언트 통신에서 발생할 수 있는 취약점 진단이 가능합니다.
+[안드로이드](./android_exported_true)와 IOS 앱들은 [루팅](./android_memorydump), 탈옥에 의한 기기내 취약점 진단과 서버, 클라이언트 통신에서 발생할 수 있는 취약점 진단이 가능합니다.
 
 디컴파일된 코드 확인과 [메소드 스위즐링](./cycript), 네이티브/하이브리드/웹앱에 따른 진단 방법을 적용합니다.
 
@@ -88,8 +88,8 @@ IoT 기기에만 해당하는 사항은 아니지만, python을 이용한 아두
 
 ### 개발 지원 사이트 활용
 
-Slack, heroku(PaaS), github 활용으로 효율성 향상 및 최신 개발 트렌드를 확인합니다.
+Slack, heroku(PaaS), github, tutorialspoint의 codingground 활용으로 효율성 향상 및 최신 개발 트렌드를 확인합니다.
 
 ### 알아야 할 프로그래밍 언어
 
-java, c, php, cmd shell 명렁어, perl, python, javascript, html, xml, sql, unix(linux) shell 명령어, asp, c++, c#, ruby, LISP, 추가 예정
+java, c, php, cmd shell 명렁어, perl, python, [javascript](./conf/js), html, xml, sql, unix(linux) shell 명령어, asp, c++, c#, ruby, LISP, clojure, go, curl 추가 예정
