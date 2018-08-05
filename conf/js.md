@@ -39,7 +39,7 @@ xhr.send(data);
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "https://www.namusecurity.co.kr/",
+  "url": "https://xxx.com/",
   "method": "OPTIONS",
   "headers": {
     "upgrade-insecure-requests": "1",
