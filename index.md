@@ -92,4 +92,4 @@ Slack, heroku(PaaS), github, tutorialspoint의 codingground 활용으로 효율�
 
 ### 알아야 할 프로그래밍 언어
 
-java, c, php, cmd shell 명렁어, perl, python, [javascript](./conf/js), html, xml, sql, unix(linux) shell 명령어, asp, c++, c#, ruby, LISP, clojure, go, curl 추가 예정
+[java](./secure/java), c, php, cmd shell 명렁어, perl, python, [javascript](./conf/js), html, xml, sql, unix(linux) shell 명령어, asp, c++, c#, ruby, LISP, clojure, go, curl 추가 예정
