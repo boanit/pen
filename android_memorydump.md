@@ -40,7 +40,7 @@ frida-ps -U
 </code></pre>
 
 ![frida_ps-u](./frida_ps-u.png)
-
+(안될 경우 frida-tools 설치후 실행하면 됩니다.)
 5) 이후 클라이언트 PC에서 실행되는 앱의 덤프를 추출하기위해 fridump파일이 필요합니다. 해당 파일은 https://github.com/Nightbringer21/fridump 
 이곳에서 설치할 수 있습니다.
 
