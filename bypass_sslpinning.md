@@ -25,7 +25,4 @@
 
 
 그리고 adb install XposedInstaller_3.1.5.apk 혹은 에뮬레
-### 조치 결과
-
-아래와 같이 Prod로 설정시 Apache만 확인할 수 있습니다.
-![header_result](./header_result.png)
+### 
