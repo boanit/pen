@@ -21,7 +21,7 @@ JustTrustMe apk (실제 pinning우회 기능을 하는 모듈) https://github.co
 
 그리고 adb install XposedInstaller_3.1.5.apk 명령어 혹은 에뮬레이터에 apk를 마우스로 끌어다 놓으면 xposed installer가 설치됩니다.
 
-Xposed Framework 설치
+### Xposed Framework 설치
 
 설치된 xposed installer을 실행 시키면 아래와 같은 화면이 출력됩니다.
 ![frida_pip](./frida_pip.png)
@@ -31,7 +31,7 @@ XPOSED 프레임워크 설치 및 없데이트 메뉴를 눌러 Install 한 후 
 
 xposed installer 를 실행시키면 정상적으로 프레임워크가 설치되었음을 확인할 수 있습니다.
 
-JustTrustMe 설치
+### JustTrustMe 설치
 
 그리고 adb install XposedInstaller_3.1.5.apk 명령어 혹은 에뮬레이터에 apk를 마우스로 끌어다 놓으면 JustTrustme가 설치됩니다.
 ![frida_pip](./frida_pip.png)
