@@ -77,9 +77,11 @@ invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
 5. 앱 실행 하면서  frida -U gadget -l hook.js
 
 메인액티비티 찾는법
+<pre>
 <code>
 adb shell "dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"
 </code>
+</pre>
 
 상기 명령어를 입력하면 현재 뷰에 대한 경로(main activity) 확인으로 가능하다.  
 
