@@ -28,17 +28,23 @@ JustTrustMe apk (실제 pinning우회 기능을 하는 모듈) https://github.co
 <img src="./before_xposed.png" width="30%" height="30%">
 
 XPOSED 프레임워크 설치 및 없데이트 메뉴를 눌러 Install 한 후 단말기를 재시작합니다.
-![frida_pip](./frida_pip.png)
+<img src="./xposed_install1.png" width="30%" height="30%">
+
+<img src="./xposed_install2.png" width="30%" height="30%">
 
 xposed installer 를 실행시키면 정상적으로 프레임워크가 설치되었음을 확인할 수 있습니다.
+
+<img src="./xposed_install3.png" width="30%" height="30%">
 
 ### JustTrustMe 설치
 
 그리고 adb install XposedInstaller_3.1.5.apk 명령어 혹은 에뮬레이터에 apk를 마우스로 끌어다 놓으면 JustTrustme가 설치됩니다.
-![frida_pip](./frida_pip.png)
+
+<img src="./justtrustme.png" width="30%" height="30%">
 설치된 후 xposed installer에서 위의 모듈을 활성화 시켜줘야 하는데 Modules메뉴에서 활성화 시켜주시면 됩니다.
 
 그리고 녹스 에뮬레이터에서 루팅을 비활성화 한 후 앱을 실행시키면 아래와 같이 SSL Pinning가 우회 되는 것을 확인할 수 있습니다.
-![frida_pip](./frida_pip.png)
+
+<img src="./pinningbypass1.PNG" width="50%" height="50%">
 
 ### 
