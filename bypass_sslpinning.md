@@ -25,7 +25,7 @@ JustTrustMe apk (실제 pinning우회 기능을 하는 모듈) https://github.co
 
 설치된 xposed installer을 실행 시키면 아래와 같은 화면이 출력됩니다.
 
-<img src="./before_xposed.png" width="50%" height="50%">
+<img src="./before_xposed.png" width="30%" height="30%">
 
 XPOSED 프레임워크 설치 및 없데이트 메뉴를 눌러 Install 한 후 단말기를 재시작합니다.
 ![frida_pip](./frida_pip.png)
