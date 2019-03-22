@@ -57,7 +57,7 @@ frida를 사용하기 위해선 루팅이된 환경에서 frida-server 단말에
 
 그러던 중 frida-gadget이라는 툴을 찾았습니다.
 
-frida-gadget는 frida와는 frida-server을 실행시키는 방법이 달랐는데,
+frida-gadget은 frida와는 frida-server을 실행시키는 방법이 달랐는데,
 앱의 lib폴더에 frida-server파일을 넣고 바이너리코드에 frida-server를 실행시키는 구조입니다.
 결론적으로 앱을 실행 시켰을 때 앱이 실행되면서 자동으로 lib내의 frida-server를 실행시킵니다.
 그런 후 클라이언트에서 frida 명령어를 통해 단말과 attach 한 후 hooking코드를 실행시키면 됩니다.
