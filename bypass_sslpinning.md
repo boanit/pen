@@ -72,9 +72,11 @@ invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
 
 3-1. 메인액티비티 찾는법은 앱 실행 시킨 후 adb shell "dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"
 명령어 치면 현재 뷰에 대한 경로가 나오고 그 근처가 main activity 
+
 4. 앱 컴파일 후 설치
+
 5. 앱 실행 하면서  frida -U gadget -l hook.js
 
 물론 앱에서 무결성 체크를 하면 위의 방법도 안됩니다.. ㅎㅎ
 
-위의 과정은 조금 복잡하기 때문에 상세 과정은 시간이 정말 많을 때 업로드 하겠습니다. 
+위의 과정은 별도로 게시할 예정입니다.
