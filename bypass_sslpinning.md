@@ -11,19 +11,17 @@
 Xposed Framework는 프레임워크로 해당 프레임워크를 설치한 후 여러가지 모듈들을 작동시킬 수 있습니다.
 
 사실 Xposed Frimework를 설치하기 위해선 Xposed Installer에서 리커버리 모드에 진입하여 friamework를 설치해야하기 때문에 루팅이 된 단말에서 설치하려 동작시킬 수 있지만, 녹스에뮬레이터 환경에선 루팅을 활성/비활성 할 수 있는 기능이 있기 때문에 루팅을 활성화 한 후 프레임워크 및 이용하고자 하는 모듈을 설치하고 루팅을 비활성화 한 후 우회 기능을 동작시킬 수 있습니다. 
-
-1. Xposed Installer  
-
+  
 먼저 Xposed Framework를 설치하기위해 우리는 아래 2 가지 항목을 다운로드받아야합니다.
 
-1. Xposed Installer apk (https://forum.xda-developers.com/showthread.php?t=3034811)
-3. JustTrustMe apk (실제 pinning우회 기능을 하는 모듈) https://github.com/Fuzion24/JustTrustMe/releases/tag/v.2
+Xposed Installer apk (https://forum.xda-developers.com/showthread.php?t=3034811)
+JustTrustMe apk (실제 pinning우회 기능을 하는 모듈) https://github.com/Fuzion24/JustTrustMe/releases/tag/v.2
 (참고로 롤리팝(5.X)버전으로 테스트를 진행했으며, 최근엔 누가(7.X)버전에서도 안정화 되었다고 하니 각 환경에 맞게 진행하면 될 것 같습니다.)
 
 
 그리고 adb install XposedInstaller_3.1.5.apk 명령어 혹은 에뮬레이터에 apk를 마우스로 끌어다 놓으면 xposed installer가 설치됩니다.
 
-2. Xposed Framework 설치
+Xposed Framework 설치
 
 설치된 xposed installer을 실행 시키면 아래와 같은 화면이 출력됩니다.
 ![frida_pip](./frida_pip.png)
@@ -33,7 +31,8 @@ XPOSED 프레임워크 설치 및 없데이트 메뉴를 눌러 Install 한 후 
 
 xposed installer 를 실행시키면 정상적으로 프레임워크가 설치되었음을 확인할 수 있습니다.
 
-3. JustTrustMe 설치
+JustTrustMe 설치
+
 그리고 adb install XposedInstaller_3.1.5.apk 명령어 혹은 에뮬레이터에 apk를 마우스로 끌어다 놓으면 JustTrustme가 설치됩니다.
 ![frida_pip](./frida_pip.png)
 설치된 후 xposed installer에서 위의 모듈을 활성화 시켜줘야 하는데 Modules메뉴에서 활성화 시켜주시면 됩니다.
