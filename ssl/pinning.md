@@ -67,12 +67,15 @@ frida-gadget은 frida와는 frida-server을 실행시키는 방법이 달랐는�
 1. 앱 추출
 2. 디컴파일
 3. 메인 액티비티 smali코드에 아래코드 삽입하고 frida-gadget 라이브러리 삽입
+
 <code>
 const-string v0, "frida-gadget"
 </code>
+
 <code>
 invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V 
 </code>
+
 4. 앱 컴파일 후 설치
 5. 앱 실행 하면서  frida -U gadget -l hook.js
 
