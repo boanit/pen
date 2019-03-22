@@ -12,7 +12,7 @@ Xposed Framework는 프레임워크로 해당 프레임워크를 설치한 후 �
 
 사실 Xposed Frimework를 설치하기 위해선 Xposed Installer에서 리커버리 모드에 진입하여 friamework를 설치해야하기 때문에 루팅이 된 단말에서 설치하려 동작시킬 수 있지만, 녹스에뮬레이터 환경에선 루팅을 활성/비활성 할 수 있는 기능이 있기 때문에 루팅을 활성화 한 후 프레임워크 및 이용하고자 하는 모듈을 설치하고 루팅을 비활성화 한 후 우회 기능을 동작시킬 수 있습니다. 
 
-## 1. Xposed Installer apk 설치 
+1. Xposed Installer  
 
 먼저 Xposed Framework를 설치하기위해 우리는 아래 2 가지 항목을 다운로드받아야합니다.
 
@@ -23,6 +23,22 @@ Xposed Framework는 프레임워크로 해당 프레임워크를 설치한 후 �
 
 그리고 adb install XposedInstaller_3.1.5.apk 명령어 혹은 에뮬레이터에 apk를 마우스로 끌어다 놓으면 xposed installer가 설치됩니다.
 
-## 2. Xposed Framework
+2. Xposed Framework 설치
 
+설치된 xposed installer을 실행 시키면 아래와 같은 화면이 출력됩니다.
+![frida_pip](./frida_pip.png)
 
+XPOSED 프레임워크 설치 및 없데이트 메뉴를 눌러 Install 한 후 단말기를 재시작합니다.
+![frida_pip](./frida_pip.png)
+
+xposed installer 를 실행시키면 정상적으로 프레임워크가 설치되었음을 확인할 수 있습니다.
+
+3. JustTrustMe 설치
+그리고 adb install XposedInstaller_3.1.5.apk 명령어 혹은 에뮬레이터에 apk를 마우스로 끌어다 놓으면 JustTrustme가 설치됩니다.
+![frida_pip](./frida_pip.png)
+설치된 후 xposed installer에서 위의 모듈을 활성화 시켜줘야 하는데 Modules메뉴에서 활성화 시켜주시면 됩니다.
+
+그리고 녹스 에뮬레이터에서 루팅을 비활성화 한 후 앱을 실행시키면 아래와 같이 SSL Pinning가 우회 되는 것을 확인할 수 있습니다.
+![frida_pip](./frida_pip.png)
+
+### 
