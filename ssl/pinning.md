@@ -25,27 +25,27 @@ JustTrustMe apk (실제 pinning우회 기능을 하는 모듈) https://github.co
 
 설치된 xposed installer을 실행 시키면 아래와 같은 화면이 출력됩니다.
 
-<img src="./ssl/before_xposed.png">
+<img src="./before_xposed.png">
 
 XPOSED 프레임워크 설치 및 없데이트 메뉴를 눌러 Install 한 후 단말기를 재시작합니다.
-<img src="./ssl/xposed_install1.png">
+<img src="./xposed_install1.png">
 
-<img src="./ssl/xposed_install2.png">
+<img src="./xposed_install2.png">
 
 xposed installer 를 실행시키면 정상적으로 프레임워크가 설치되었음을 확인할 수 있습니다.
 
-<img src="./ssl/xposed_install3.png">
+<img src="./xposed_install3.png">
 
 ### JustTrustMe 설치
 
 그리고 adb install XposedInstaller_3.1.5.apk 명령어 혹은 에뮬레이터에 apk를 마우스로 끌어다 놓으면 JustTrustme가 설치됩니다.
 
-<img src="./ssl/justtrustme.png">
+<img src="./justtrustme.png">
 설치된 후 xposed installer에서 위의 모듈을 활성화 시켜줘야 하는데 Modules메뉴에서 활성화 시켜주시면 됩니다.
 
 그리고 녹스 에뮬레이터에서 루팅을 비활성화 한 후 앱을 실행시키면 아래와 같이 SSL Pinning가 우회 되는 것을 확인할 수 있습니다.
 
-<img src="./ssl/pinningbypass1.PNG">
+<img src="./pinningbypass1.PNG">
 
 ## 2. frida-gadget
 위와 같이 xposed를 사용해서 sslpinning를 하여 동적진단을 모든앱에서 가능하다면 정말 좋겠지만.
@@ -74,14 +74,11 @@ const-string v0, "frida-gadget"
 <code>
 invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V 
 </code>
-
-메인액티비티 찾는법은 앱 실행 시킨 후
-
+메인액티비티 찾는법
 <code>
 adb shell "dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"
 </code>
-
-명령어를 입력하면 현재 뷰에 대한 경로(main activity) 확인으로 가능하다.  
+상기 명령어를 입력하면 현재 뷰에 대한 경로(main activity) 확인으로 가능하다.  
 
 4. 앱 컴파일 후 설치
 
