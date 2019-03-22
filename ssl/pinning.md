@@ -67,22 +67,21 @@ frida-gadget은 frida와는 frida-server을 실행시키는 방법이 달랐는�
 1. 앱 추출
 2. 디컴파일
 3. 메인 액티비티 smali코드에 아래코드 삽입하고 frida-gadget 라이브러리 삽입
-
 <code>
 const-string v0, "frida-gadget"
 </code>
 <code>
 invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V 
 </code>
+4. 앱 컴파일 후 설치
+5. 앱 실행 하면서  frida -U gadget -l hook.js
+
 메인액티비티 찾는법
 <code>
 adb shell "dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"
 </code>
+
 상기 명령어를 입력하면 현재 뷰에 대한 경로(main activity) 확인으로 가능하다.  
-
-4. 앱 컴파일 후 설치
-
-5. 앱 실행 하면서  frida -U gadget -l hook.js
 
 물론 앱에서 무결성 체크를 하면 위의 방법도 안됩니다.. ㅎㅎ
 
