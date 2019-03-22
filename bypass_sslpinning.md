@@ -70,7 +70,7 @@ frida-gadget은 frida와는 frida-server을 실행시키는 방법이 달랐는�
 const-string v0, "frida-gadget"
 invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V 
 
-3-1. 메인액티비티 찾는법은 앱 실행 시킨 후 adb shell "dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"
+메인액티비티 찾는법은 앱 실행 시킨 후 adb shell "dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"
 명령어 치면 현재 뷰에 대한 경로가 나오고 그 근처가 main activity 
 
 4. 앱 컴파일 후 설치
