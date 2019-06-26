@@ -15,6 +15,7 @@ Xposed Framework는 프레임워크로 해당 프레임워크를 설치한 후 �
 먼저 Xposed Framework를 설치하기위해 우리는 아래 2 가지 항목을 다운로드받아야합니다.
 
 Xposed Installer apk (https://forum.xda-developers.com/showthread.php?t=3034811)
+
 JustTrustMe apk (실제 pinning우회 기능을 하는 모듈) https://github.com/Fuzion24/JustTrustMe/releases/tag/v.2
 (참고로 롤리팝(5.X)버전으로 테스트를 진행했으며, 최근엔 누가(7.X)버전에서도 안정화 되었다고 하니 각 환경에 맞게 진행하면 될 것 같습니다.)
 
