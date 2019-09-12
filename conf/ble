@@ -99,4 +99,8 @@ ubertooth-btle -f -c /tmp/pipe
 
 Edit - Preference에 들어 간 후, Protocols를 선택 후, DLT_USER항목에서 btle 입력
 
+### could not open Ubertooth device unable to find ubertooth 에러
 
+vm과 하드웨어(ubertooth one)이 제대로 연결되지 않은 상황이므로, vm을 전체화면으로 하여 재연결 후 led 상태 확인
+
+![ble](./ble.png)
