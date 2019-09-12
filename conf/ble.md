@@ -26,9 +26,9 @@ sudo make install
 
 libbtbb의 build 디렉터리에서 ubertooth tools 설치하기(설치 경로 : ~/libbtbb-2018-12-R1/build/)
 
-# wget https://github.com/greatscottgadgets/ubertooth/archive/2018-12-R1.tar.xz
+wget https://github.com/greatscottgadgets/ubertooth/archive/2018-12-R1.tar.gz
 
-tar xf ubertooth-2018-12-R1.tar.xz
+tar xf ubertooth-2018-12-R1.tar.gz
 
 cd ubertooth-2018-12-R1/host
 
