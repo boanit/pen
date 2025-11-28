@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>역산 예산 계산 시스템</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #495057;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: "📊";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tr:hover {
+            background-color: #f1f3f5;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1em;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .result {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+            background: #e7f3ff;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .total-row {
+            background: #fff3cd !important;
+            font-weight: 700;
+            font-size: 1.15em;
+        }
+
+        .total-row td {
+            border-top: 3px solid #ffc107;
+        }
+
+        .label {
+            font-weight: 600;
+            color: #495057;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .infrastructure-item {
+            background: #e7f3ff;
+        }
+
+        .main-budget {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .main-budget label {
+            font-size: 1.5em;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .main-budget .result-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .won {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-left: 5px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+
+        .info-box {
+            background: #d1ecf1;
+            border-left: 5px solid #0c5460;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .support-per-company {
+            background: #d4edda;
+        }
+
+        .infra-total-row {
+            background: #cfe2ff !important;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 역산 예산 계산 시스템</h1>
+        <p class="subtitle">필요한 예산을 입력하면 총 금액이 자동으로 계산됩니다</p>
+
+        <div class="main-budget">
+            <label>💰 총 필요 예산</label>
+            <div class="result-value" id="totalBudget">0</div>
+            <span style="font-size: 1.2em;">원</span>
+        </div>
+
+        <!-- 1. 예산 입력 섹션 -->
+        <div class="section">
+            <div class="section-title">분야별 예산 입력 (금액)</div>
+            <div class="info-box">
+                📌 각 분야에 필요한 금액을 입력하면 총 예산이 자동으로 계산됩니다.
+            </div>
+            <table>
+                <tr>
+                    <th style="width: 40%;">분야</th>
+                    <th style="width: 30%;">필요 금액 (원)</th>
+                    <th style="width: 30%;">비율 (%)</th>
+                </tr>
+                <tr>
+                    <td class="label">컨설팅</td>
+                    <td><input type="number" id="consultingAmount" value="500000000" min="0" oninput="calculate()"></td>
+                    <td class="result" id="consultingRatio">50.0</td>
+                </tr>
+                <tr>
+                    <td class="label">인프라</td>
+                    <td><input type="number" id="infraAmount" value="300000000" min="0" oninput="calculate()"></td>
+                    <td class="result" id="infraRatio">30.0</td>
+                </tr>
+                <tr>
+                    <td class="label">교육</td>
+                    <td><input type="number" id="educationAmount" value="150000000" min="0" oninput="calculate()"></td>
+                    <td class="result" id="educationRatio">15.0</td>
+                </tr>
+                <tr>
+                    <td class="label">기타</td>
+                    <td><input type="number" id="etcAmount" value="50000000" min="0" oninput="calculate()"></td>
+                    <td class="result" id="etcRatio">5.0</td>
+                </tr>
+                <tr class="total-row">
+                    <td class="label">합계</td>
+                    <td class="result" id="totalAmount">1,000,000,000</td>
+                    <td class="result" id="totalRatio">100.0</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 2. 인프라 상세 섹션 (개별 솔루션 입력) -->
+        <div class="section">
+            <div class="section-title">인프라 상세 (각 솔루션별 예산 입력)</div>
+            <div class="info-box">
+                📌 각 인프라 솔루션에 필요한 금액을 입력하면 인프라 총액과 전체 예산이 자동으로 계산됩니다.
+            </div>
+            <table>
+                <tr>
+                    <th style="width: 30%;">솔루션</th>
+                    <th style="width: 35%;">필요 금액 (원)</th>
+                    <th style="width: 35%;">구매 가능 수량 (개)</th>
+                </tr>
+                <tr class="infrastructure-item">
+                    <td class="label">📧 메일</td>
+                    <td><input type="number" id="mailBudget" value="50000000" min="0" oninput="calculateInfra()"></td>
+                    <td class="result" id="mailCount">-</td>
+                </tr>
+                <tr class="infrastructure-item">
+                    <td class="label">🛡️ 악성코드분석</td>
+                    <td><input type="number" id="malwareBudget" value="75000000" min="0" oninput="calculateInfra()"></td>
+                    <td class="result" id="malwareCount">-</td>
+                </tr>
+                <tr class="infrastructure-item">
+                    <td class="label">🌐 네트워크통제</td>
+                    <td><input type="number" id="networkBudget" value="100000000" min="0" oninput="calculateInfra()"></td>
+                    <td class="result" id="networkCount">-</td>
+                </tr>
+                <tr class="infrastructure-item">
+                    <td class="label">💾 백업복구</td>
+                    <td><input type="number" id="backupBudget" value="75000000" min="0" oninput="calculateInfra()"></td>
+                    <td class="result" id="backupCount">-</td>
+                </tr>
+                <tr class="infra-total-row">
+                    <td class="label">인프라 총액</td>
+                    <td class="result highlight" id="infraTotalAmount">300,000,000</td>
+                    <td class="result" id="infraTotalRatio">-</td>
+                </tr>
+            </table>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px; border-left: 5px solid #ffc107;">
+                <strong>💡 참고:</strong> 각 솔루션의 구매 가능 수량을 보려면 아래에서 1개당 라이센스 비용을 입력하세요.
+            </div>
+
+            <table style="margin-top: 20px;">
+                <tr>
+                    <th style="width: 30%;">솔루션</th>
+                    <th style="width: 35%;">1 라이센스 비용 (원)/월</th>
+                    <th style="width: 35%;">구매 가능 수량 (개)</th>
+                </tr>
+                <tr class="infrastructure-item">
+                    <td class="label">📧 메일</td>
+                    <td><input type="number" id="mailCost" value="1000" min="0" oninput="calculateLicenses()"></td>
+                    <td class="result" id="mailLicenseCount">50,000</td>
+                </tr>
+                <tr class="infrastructure-item">
+                    <td class="label">🛡️ 악성코드분석</td>
+                    <td><input type="number" id="malwareCost" value="2000" min="0" oninput="calculateLicenses()"></td>
+                    <td class="result" id="malwareLicenseCount">37,500</td>
+                </tr>
+                <tr class="infrastructure-item">
+                    <td class="label">🌐 네트워크통제</td>
+                    <td><input type="number" id="networkCost" value="1500" min="0" oninput="calculateLicenses()"></td>
+                    <td class="result" id="networkLicenseCount">66,666</td>
+                </tr>
+                <tr class="infrastructure-item">
+                    <td class="label">💾 백업복구</td>
+                    <td><input type="number" id="backupCost" value="2500" min="0" oninput="calculateLicenses()"></td>
+                    <td class="result" id="backupLicenseCount">30,000</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 3. 기업당 필요 금액 섹션 -->
+        <div class="section">
+            <div class="section-title">기업당 필요 금액 계산</div>
+            <div class="info-box">
+                📌 지원 대상 기업 수를 입력하면 각 기업이 받을 수 있는 분야별 금액이 계산됩니다.
+            </div>
+            <div style="text-align: center; margin: 30px 0;">
+                <label style="font-size: 1.3em; font-weight: 600; margin-right: 15px;">🏢 지원 대상 기업 수:</label>
+                <input type="number" id="companyCount" value="10" min="1" style="width: 150px; padding: 12px; font-size: 1.2em; text-align: center; border: 2px solid #667eea; border-radius: 8px;" oninput="calculate()">
+                <span style="font-size: 1.2em; margin-left: 10px;">개 기업</span>
+            </div>
+            <table>
+                <tr>
+                    <th style="width: 40%;">분야</th>
+                    <th style="width: 30%;">총 필요 금액 (원)</th>
+                    <th style="width: 30%;">기업당 지원 금액 (원)</th>
+                </tr>
+                <tr class="support-per-company">
+                    <td class="label">컨설팅</td>
+                    <td class="result" id="consultingTotal">500,000,000</td>
+                    <td class="result highlight" id="consultingPerCompany">50,000,000</td>
+                </tr>
+                <tr class="support-per-company">
+                    <td class="label">인프라 (전체)</td>
+                    <td class="result" id="infraTotal">300,000,000</td>
+                    <td class="result highlight" id="infraPerCompany">30,000,000</td>
+                </tr>
+                <tr class="support-per-company">
+                    <td class="label">교육</td>
+                    <td class="result" id="educationTotal">150,000,000</td>
+                    <td class="result highlight" id="educationPerCompany">15,000,000</td>
+                </tr>
+                <tr class="support-per-company">
+                    <td class="label">기타</td>
+                    <td class="result" id="etcTotal">50,000,000</td>
+                    <td class="result highlight" id="etcPerCompany">5,000,000</td>
+                </tr>
+                <tr class="total-row">
+                    <td class="label">전체 합계</td>
+                    <td class="result" id="grandTotal">1,000,000,000</td>
+                    <td class="result highlight" id="totalPerCompany">100,000,000</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function formatNumber(num) {
+            return Math.floor(num).toLocaleString('ko-KR');
+        }
+
+        function calculateInfra() {
+            // 각 인프라 솔루션 금액 합산
+            const mailBudget = parseFloat(document.getElementById('mailBudget').value) || 0;
+            const malwareBudget = parseFloat(document.getElementById('malwareBudget').value) || 0;
+            const networkBudget = parseFloat(document.getElementById('networkBudget').value) || 0;
+            const backupBudget = parseFloat(document.getElementById('backupBudget').value) || 0;
+
+            const infraTotal = mailBudget + malwareBudget + networkBudget + backupBudget;
+
+            // 인프라 총액 표시
+            document.getElementById('infraTotalAmount').textContent = formatNumber(infraTotal);
+            
+            // 인프라 금액을 메인 인프라 입력란에 반영
+            document.getElementById('infraAmount').value = infraTotal;
+            
+            // 라이센스 계산도 함께 수행
+            calculateLicenses();
+            
+            // 전체 계산
+            calculate();
+        }
+
+        function calculateLicenses() {
+            // 각 솔루션 예산
+            const mailBudget = parseFloat(document.getElementById('mailBudget').value) || 0;
+            const malwareBudget = parseFloat(document.getElementById('malwareBudget').value) || 0;
+            const networkBudget = parseFloat(document.getElementById('networkBudget').value) || 0;
+            const backupBudget = parseFloat(document.getElementById('backupBudget').value) || 0;
+
+            // 라이센스 비용
+            const mailCost = parseFloat(document.getElementById('mailCost').value) || 1;
+            const malwareCost = parseFloat(document.getElementById('malwareCost').value) || 1;
+            const networkCost = parseFloat(document.getElementById('networkCost').value) || 1;
+            const backupCost = parseFloat(document.getElementById('backupCost').value) || 1;
+
+            // 구매 가능 수량 계산
+            const mailCount = Math.floor(mailBudget / mailCost);
+            const malwareCount = Math.floor(malwareBudget / malwareCost);
+            const networkCount = Math.floor(networkBudget / networkCost);
+            const backupCount = Math.floor(backupBudget / backupCost);
+
+            document.getElementById('mailLicenseCount').textContent = formatNumber(mailCount) + ' 개';
+            document.getElementById('malwareLicenseCount').textContent = formatNumber(malwareCount) + ' 개';
+            document.getElementById('networkLicenseCount').textContent = formatNumber(networkCount) + ' 개';
+            document.getElementById('backupLicenseCount').textContent = formatNumber(backupCount) + ' 개';
+        }
+
+        function calculate() {
+            // 각 분야 금액 가져오기
+            const consultingAmount = parseFloat(document.getElementById('consultingAmount').value) || 0;
+            const infraAmount = parseFloat(document.getElementById('infraAmount').value) || 0;
+            const educationAmount = parseFloat(document.getElementById('educationAmount').value) || 0;
+            const etcAmount = parseFloat(document.getElementById('etcAmount').value) || 0;
+
+            // 총 예산 계산
+            const totalBudget = consultingAmount + infraAmount + educationAmount + etcAmount;
+
+            // 총 예산 표시
+            document.getElementById('totalBudget').textContent = formatNumber(totalBudget);
+            document.getElementById('totalAmount').textContent = formatNumber(totalBudget);
+
+            // 비율 계산
+            if (totalBudget > 0) {
+                const consultingRatio = (consultingAmount / totalBudget) * 100;
+                const infraRatio = (infraAmount / totalBudget) * 100;
+                const educationRatio = (educationAmount / totalBudget) * 100;
+                const etcRatio = (etcAmount / totalBudget) * 100;
+
+                document.getElementById('consultingRatio').textContent = consultingRatio.toFixed(1);
+                document.getElementById('infraRatio').textContent = infraRatio.toFixed(1);
+                document.getElementById('educationRatio').textContent = educationRatio.toFixed(1);
+                document.getElementById('etcRatio').textContent = etcRatio.toFixed(1);
+                document.getElementById('totalRatio').textContent = '100.0';
+            } else {
+                document.getElementById('consultingRatio').textContent = '0.0';
+                document.getElementById('infraRatio').textContent = '0.0';
+                document.getElementById('educationRatio').textContent = '0.0';
+                document.getElementById('etcRatio').textContent = '0.0';
+                document.getElementById('totalRatio').textContent = '0.0';
+            }
+
+            // 기업당 지원 금액 계산
+            const companyCount = parseFloat(document.getElementById('companyCount').value) || 1;
+
+            document.getElementById('consultingTotal').textContent = formatNumber(consultingAmount);
+            document.getElementById('infraTotal').textContent = formatNumber(infraAmount);
+            document.getElementById('educationTotal').textContent = formatNumber(educationAmount);
+            document.getElementById('etcTotal').textContent = formatNumber(etcAmount);
+            document.getElementById('grandTotal').textContent = formatNumber(totalBudget);
+
+            document.getElementById('consultingPerCompany').textContent = formatNumber(consultingAmount / companyCount);
+            document.getElementById('infraPerCompany').textContent = formatNumber(infraAmount / companyCount);
+            document.getElementById('educationPerCompany').textContent = formatNumber(educationAmount / companyCount);
+            document.getElementById('etcPerCompany').textContent = formatNumber(etcAmount / companyCount);
+            document.getElementById('totalPerCompany').textContent = formatNumber(totalBudget / companyCount);
+        }
+
+        // 페이지 로드 시 초기 계산
+        calculateInfra();
+        calculateLicenses();
+        calculate();
+    </script>
+</body>
+</html>
