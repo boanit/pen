@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예산 배분 계산 시스템</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #495057;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: "📊";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tr:hover {
+            background-color: #f1f3f5;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1em;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .result {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+            background: #e7f3ff;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .total-row {
+            background: #fff3cd !important;
+            font-weight: 700;
+            font-size: 1.15em;
+        }
+
+        .total-row td {
+            border-top: 3px solid #ffc107;
+        }
+
+        .label {
+            font-weight: 600;
+            color: #495057;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .infrastructure-item {
+            background: #e7f3ff;
+        }
+
+        .main-budget {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .main-budget label {
+            font-size: 1.5em;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .main-budget input {
+            width: 300px;
+            padding: 15px;
+            font-size: 1.5em;
+            text-align: center;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .won {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-left: 5px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+
+        .info-box {
+            background: #d1ecf1;
+            border-left: 5px solid #0c5460;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .support-per-company {
+            background: #d4edda;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💼 예산 배분 계산 시스템</h1>
+        <p class="subtitle">10억 원 예산을 효율적으로 관리하세요</p>
+
+        <div class="main-budget">
+            <label>🎯 총 예산</label>
+            <input type="number" id="totalBudget" value="1000000000" oninput="calculate()">
+            <span style="font-size: 1.2em; margin-left: 10px;">원</span>
+        </div>
+
+        <!-- 1. 예산 배분 섹션 -->
+        <div class="section">
+            <div class="section-title">예산 배분 (비율 및 금액)</div>
+            <div class="info-box">
+                📌 비율(%)을 입력하면 자동으로 금액이 계산됩니다. 비율의 합계는 100%여야 합니다.
+            </div>
+            <table>
+                <tr>
+                    <th style="width: 30%;">분야</th>
+                    <th style="width: 25%;">비율 (%)</th>
+                    <th style="width: 45%;">배정 금액 (원)</th>
+                </tr>
+                <tr>
+                    <td class="label">컨설팅</td>
+                    <td><input type="number" id="consultingRatio" value="50" min="0" max="100" step="0.1" oninput="calculate()"></td>
+                    <td class="result" id="consultingAmount">500,000,000</td>
+                </tr>
+                <tr>
+                    <td class="label">인프라</td>
+                    <td><input type="number" id="infraRatio" value="30" min="0" max="100" step="0.1" oninput="calculate()"></td>
+                    <td class="result" id="infraAmount">300,000,000</td>
+                </tr>
+                <tr>
+                    <td class="label">교육</td>
+                    <td><input type="number" id="educationRatio" value="15" min="0" max="100" step="0.1" oninput="calculate()"></td>
+                    <td class="result" id="educationAmount">150,000,000</td>
+                </tr>
+                <tr>
+                    <td class="label">기타</td>
+                    <td><input type="number" id="etcRatio" value="5" min="0" max="100" step="0.1" oninput="calculate()"></td>
+                    <td class="result" id="etcAmount">50,000,000</td>
+                </tr>
+                <tr class="total-row">
+                    <td class="label">합계</td>
+                    <td class="result" id="totalRatio">100.0</td>
+                    <td class="result" id="totalAmount">1,000,000,000</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 2. 인프라 상세 섹션 -->
+        <div class="section">
+            <div class="section-title">인프라 상세 (라이센스 계산)</div>
+            <div class="info-box">
+                📌 1개 라이센스 비용을 입력하면 구매 가능한 라이센스 개수가 자동 계산됩니다.
+            </div>
+            <table>
+                <tr>
+                    <th style="width: 30%;">항목</th>
+                    <th style="width: 30%;">1 라이센스 비용 (원)</th>
+                    <th style="width: 40%;">지원 가능 개수</th>
+                </tr>
+                <tr class="infrastructure-item">
+                    <td class="label">📧 메일</td>
+                    <td><input type="number" id="mailCost" value="1000000" min="0" oninput="calculate()"></td>
+                    <td class="result" id="mailCount">300</td>
+                </tr>
+                <tr class="infrastructure-item">
+                    <td class="label">🛡️ 악성코드분석</td>
+                    <td><input type="number" id="malwareCost" value="2000000" min="0" oninput="calculate()"></td>
+                    <td class="result" id="malwareCount">150</td>
+                </tr>
+                <tr class="infrastructure-item">
+                    <td class="label">🌐 네트워크통제</td>
+                    <td><input type="number" id="networkCost" value="1500000" min="0" oninput="calculate()"></td>
+                    <td class="result" id="networkCount">200</td>
+                </tr>
+                <tr class="infrastructure-item">
+                    <td class="label">💾 백업복구</td>
+                    <td><input type="number" id="backupCost" value="2500000" min="0" oninput="calculate()"></td>
+                    <td class="result" id="backupCount">120</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 3. 기업당 지원 금액 섹션 -->
+        <div class="section">
+            <div class="section-title">기업당 지원 금액 계산</div>
+            <div class="info-box">
+                📌 지원 대상 기업 수를 입력하면 각 기업이 받을 수 있는 분야별 금액이 계산됩니다.
+            </div>
+            <div style="text-align: center; margin: 30px 0;">
+                <label style="font-size: 1.3em; font-weight: 600; margin-right: 15px;">🏢 예상 기업 지원 수:</label>
+                <input type="number" id="companyCount" value="10" min="1" style="width: 150px; padding: 12px; font-size: 1.2em; text-align: center; border: 2px solid #667eea; border-radius: 8px;" oninput="calculate()">
+                <span style="font-size: 1.2em; margin-left: 10px;">개 기업</span>
+            </div>
+            <table>
+                <tr>
+                    <th style="width: 40%;">분야</th>
+                    <th style="width: 30%;">총 배정 금액 (원)</th>
+                    <th style="width: 30%;">기업당 지원 금액 (원)</th>
+                </tr>
+                <tr class="support-per-company">
+                    <td class="label">컨설팅</td>
+                    <td class="result" id="consultingTotal">500,000,000</td>
+                    <td class="result highlight" id="consultingPerCompany">50,000,000</td>
+                </tr>
+                <tr class="support-per-company">
+                    <td class="label">인프라</td>
+                    <td class="result" id="infraTotal">300,000,000</td>
+                    <td class="result highlight" id="infraPerCompany">30,000,000</td>
+                </tr>
+                <tr class="support-per-company">
+                    <td class="label">교육</td>
+                    <td class="result" id="educationTotal">150,000,000</td>
+                    <td class="result highlight" id="educationPerCompany">15,000,000</td>
+                </tr>
+                <tr class="support-per-company">
+                    <td class="label">기타</td>
+                    <td class="result" id="etcTotal">50,000,000</td>
+                    <td class="result highlight" id="etcPerCompany">5,000,000</td>
+                </tr>
+                <tr class="total-row">
+                    <td class="label">전체 합계</td>
+                    <td class="result" id="grandTotal">1,000,000,000</td>
+                    <td class="result highlight" id="totalPerCompany">100,000,000</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function formatNumber(num) {
+            return Math.floor(num).toLocaleString('ko-KR');
+        }
+
+        function calculate() {
+            // 총 예산
+            const totalBudget = parseFloat(document.getElementById('totalBudget').value) || 0;
+
+            // 비율 가져오기
+            const consultingRatio = parseFloat(document.getElementById('consultingRatio').value) || 0;
+            const infraRatio = parseFloat(document.getElementById('infraRatio').value) || 0;
+            const educationRatio = parseFloat(document.getElementById('educationRatio').value) || 0;
+            const etcRatio = parseFloat(document.getElementById('etcRatio').value) || 0;
+
+            // 비율 합계
+            const totalRatio = consultingRatio + infraRatio + educationRatio + etcRatio;
+            document.getElementById('totalRatio').textContent = totalRatio.toFixed(1);
+            document.getElementById('totalRatio').style.color = totalRatio === 100 ? '#28a745' : '#dc3545';
+
+            // 금액 계산
+            const consultingAmount = totalBudget * (consultingRatio / 100);
+            const infraAmount = totalBudget * (infraRatio / 100);
+            const educationAmount = totalBudget * (educationRatio / 100);
+            const etcAmount = totalBudget * (etcRatio / 100);
+
+            document.getElementById('consultingAmount').textContent = formatNumber(consultingAmount);
+            document.getElementById('infraAmount').textContent = formatNumber(infraAmount);
+            document.getElementById('educationAmount').textContent = formatNumber(educationAmount);
+            document.getElementById('etcAmount').textContent = formatNumber(etcAmount);
+            document.getElementById('totalAmount').textContent = formatNumber(totalBudget);
+
+            // 인프라 라이센스 계산
+            const mailCost = parseFloat(document.getElementById('mailCost').value) || 1;
+            const malwareCost = parseFloat(document.getElementById('malwareCost').value) || 1;
+            const networkCost = parseFloat(document.getElementById('networkCost').value) || 1;
+            const backupCost = parseFloat(document.getElementById('backupCost').value) || 1;
+
+            const mailCount = Math.floor(infraAmount / mailCost);
+            const malwareCount = Math.floor(infraAmount / malwareCost);
+            const networkCount = Math.floor(infraAmount / networkCost);
+            const backupCount = Math.floor(infraAmount / backupCost);
+
+            document.getElementById('mailCount').textContent = formatNumber(mailCount) + ' 개';
+            document.getElementById('malwareCount').textContent = formatNumber(malwareCount) + ' 개';
+            document.getElementById('networkCount').textContent = formatNumber(networkCount) + ' 개';
+            document.getElementById('backupCount').textContent = formatNumber(backupCount) + ' 개';
+
+            // 기업당 지원 금액 계산
+            const companyCount = parseFloat(document.getElementById('companyCount').value) || 1;
+
+            document.getElementById('consultingTotal').textContent = formatNumber(consultingAmount);
+            document.getElementById('infraTotal').textContent = formatNumber(infraAmount);
+            document.getElementById('educationTotal').textContent = formatNumber(educationAmount);
+            document.getElementById('etcTotal').textContent = formatNumber(etcAmount);
+            document.getElementById('grandTotal').textContent = formatNumber(totalBudget);
+
+            document.getElementById('consultingPerCompany').textContent = formatNumber(consultingAmount / companyCount);
+            document.getElementById('infraPerCompany').textContent = formatNumber(infraAmount / companyCount);
+            document.getElementById('educationPerCompany').textContent = formatNumber(educationAmount / companyCount);
+            document.getElementById('etcPerCompany').textContent = formatNumber(etcAmount / companyCount);
+            document.getElementById('totalPerCompany').textContent = formatNumber(totalBudget / companyCount);
+        }
+
+        // 페이지 로드 시 초기 계산
+        calculate();
+    </script>
+</body>
+</html>
